@@ -1,12 +1,7 @@
 # Passat
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/passat`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Passat is the gem: DIMACS SAT file parser and satisfability checker.
 
 ## Installation
-
-Add this line to your application's Gemfile:
 
 ```ruby
 gem 'passat'
@@ -22,7 +17,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```sample.cnf
+c
+c SAMPLE FILE
+c
+p cnf 5 3
+1 -5 4 0
+-1 5 3 4 0
+-3 -4 0
+```
+
+
+```ruby
+require "passat"
+
+test = Passat:FromFile.new("sample.cnf")
+
+test.solve([1,0,1,0,0]) #=> 1
+```
 
 ## Development
 
