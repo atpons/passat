@@ -1,5 +1,5 @@
 # Passat
-Passat is the gem: DIMACS SAT file parser and satisfability checker.
+Passat is the gem: DIMACS CNF format file parser and satisfability checker.
 
 ## Installation
 
@@ -17,6 +17,10 @@ Or install it yourself as:
 
 ## Usage
 
+This is `sample.cnf`, passat supports [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html).
+
+On now version, `c` and `p` are ignored.
+
 ```sample.cnf
 c
 c SAMPLE FILE
@@ -31,9 +35,13 @@ p cnf 5 3
 ```ruby
 require "passat"
 
-test = Passat:FromFile.new("sample.cnf")
+test = Passat:Boolean.new([1,0,1,0,0])
 
-test.solve([1,0,1,0,0]) #=> 1
+p test.input #=> [true, false, true, false, false]
+
+test.convert #=> [[true, true, false], [false, false, true, false], [false, true]]
+
+p test.check #=> true
 ```
 
 ## Development
@@ -44,7 +52,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/passat.
+Bug reports and pull requests are welcome on GitHub at https://github.com/atpons/passat.
 
 ## License
 
