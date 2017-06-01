@@ -37,6 +37,8 @@ require "passat"
 
 test = Passat:Boolean.new([1,0,1,0,0])
 
+test.load("sample.cnf")
+
 p test.input #=> [true, false, true, false, false]
 
 test.convert #=> [[true, true, false], [false, false, true, false], [false, true]]
