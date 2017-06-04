@@ -9,26 +9,22 @@ module Passat
   attr_accessor :clause
 
   def load(file)
+    @temparr = []
     @clause = []
      File.open(file) do |f|
        f.each_line do |o|
-         @temparr = []
          case o[0]
          when "c"
          when "p"
          else
-           o.split("0").each do |x|
-             @temparr2 = []
-             x.split.each do |y|
-               @temparr2.push(y.to_i)
-             end
-             @temparr.push(@temparr2)
-           end
-           @temparr.each do |arr|
-             unless arr.empty?
-               @clause.push(arr)
-             end
-           end
+          o.split.each do |value|
+            if value.to_i == 0
+              @clause.push(@temparr)
+              @temparr = []
+            else
+              @temparr.push(value.to_i)
+            end
+          end
          end
        end
      end
